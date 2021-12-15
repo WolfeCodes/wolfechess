@@ -20,8 +20,28 @@ function App() {
       to: targetSquare
     })
     //Not allowing illegal moves
-    if(move === null) return;
+    const youWish = document.querySelector('#youwish')
+    const death = document.querySelector('.death')
+    if(move === null) {
+      youWish.style.opacity = '100%';
+      youWish.classList.add('forward')
+      setTimeout(()=> {
+        youWish.style.opacity = '0';
+        youWish.classList.remove('forward')
+      }, 4000)
+      return;
+    }
 
+    // if(move === capture) {
+    //   death.style.opacity = '100%';
+    //   death.classList.add('forward')
+    //   setTimeout(()=> {
+    //     death.style.opacity = '0';
+    //     death.classList.remove('forward')
+    //   }, 4000)
+
+    // }
+  
     setFen(chessGame.current.fen())
   } 
 
