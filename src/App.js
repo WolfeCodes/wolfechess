@@ -21,29 +21,40 @@ function App() {
     })
     //Not allowing illegal moves
     const youWish = document.querySelector('#youwish')
-    const death = document.querySelector('.death')
+    const death = document.querySelector('#death')
     if(move === null) {
       youWish.style.opacity = '100%';
       youWish.classList.add('forward')
       setTimeout(()=> {
         youWish.style.opacity = '0';
         youWish.classList.remove('forward')
+      }, 3000)
+      return;
+    }
+    //Checking for checkmate logic!
+    if(chessGame.current && chessGame.current.game_over() === true){
+      console.log('Game over Muggle!')
+      death.style.opacity = '100%';
+      death.classList.add('forward')
+      setTimeout(()=> {
+        death.style.opacity = '0';
+        death.classList.remove('forward')
       }, 4000)
       return;
     }
 
-    // if(move === capture) {
-    //   death.style.opacity = '100%';
-    //   death.classList.add('forward')
-    //   setTimeout(()=> {
-    //     death.style.opacity = '0';
-    //     death.classList.remove('forward')
-    //   }, 4000)
+    
 
-    // }
+   
   
     setFen(chessGame.current.fen())
   } 
+
+  const gameReset = () => {
+    chessGame.current.clear();
+    chessGame.current.reset();
+    setFen('start')
+  }
 
   // console.log(move)
   console.log(chessGame)
