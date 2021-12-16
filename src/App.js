@@ -19,7 +19,7 @@ function App() {
       from: sourceSquare,
       to: targetSquare
     })
-    //Not allowing illegal moves
+    //Checking for and not allowing illegal moves
     const youWish = document.querySelector('#youwish')
     const death = document.querySelector('#death')
     if(move === null) {
@@ -33,13 +33,14 @@ function App() {
     }
     //Checking for checkmate logic!
     if(chessGame.current && chessGame.current.game_over() === true){
-      console.log('Game over Muggle!')
+      alert('Game over Muggle!')
       death.style.opacity = '100%';
       death.classList.add('forward')
       setTimeout(()=> {
         death.style.opacity = '0';
         death.classList.remove('forward')
       }, 4000)
+      chessGame.current.reset();
       return;
     }
 
